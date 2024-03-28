@@ -8,11 +8,11 @@ import time
 import os
 
 from email.parser import BytesParser
-openai.api_key = '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'
+#openai.api_key = ''
 
 # Connect to the IMAP server
 mail = imaplib.IMAP4_SSL('imap.gmail.com')
-mail.login('emailautomation13@gmail.com', 'zcaywtqjkehllmjv')
+mail.login('', '')
 mail.select('inbox')
 subject = "salon appointment"
 
