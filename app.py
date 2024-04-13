@@ -8,25 +8,46 @@ import pandas as pd
 from web3 import Web3
 from hashlib import sha256
 import requests
+from web3.middleware import geth_poa_middleware
 
-#w3 = Web3(Web3.HTTPProvider('https://erpc.xinfin.network'))
+w3 = Web3(Web3.HTTPProvider('https://erpc.xinfin.network'))
+w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
+abi_file = 'abi.json'
+with open('abi.json', 'r') as abi_file:
+    contract_abi = json.load(abi_file)
+
+contract_address = '0x06cAd455E39dE197C93a725b9057bB49f37F3941'
+contract = w3.eth.contract(address=contract_address, abi=contract_abi)
 # Verify connection
-"""if w3.is_connected():
+if w3.is_connected():
     print("Successfully connected to XinFin Mainnet.")
 else:
-    print("Failed to connect.")"""
+    print("Failed to connect.")
 
 
 
-"""def store_email_hash_on_chain(email_body, sender_email):
-    email_hash = sha256((email_body + sender_email).encode()).hexdigest()
-    tx_hash = w3.eth.contract(
-        address='0xFc515EA2899bC4Ce74A69b59Ef49935C069f0dF0',  # Replace with your contract address
-        abi=contract_abi  # Contract ABI to interact with
-    ).functions.storeHash(email_hash).transact({'from': w3.eth.accounts[0]})
+def store_email_hash_on_chain(uid, email_body):
+    sender_address = w3.eth.accounts[0]  # Ensure this account is unlocked and has gas
 
-    return tx_hash"""
+    # Create hash, needs to be bytes32
+    email_hash = w3.keccak(text=email_body)  # This directly uses Web3 to create a bytes32 hash
+    tx = contract.functions.storeHash(uid, email_hash).buildTransaction({
+        'from': sender_address,
+        'nonce': w3.eth.getTransactionCount(sender_address),
+        'gas': 2000000,
+        'gasPrice': w3.toWei('10', 'gwei')
+    })
+
+    # Sign the transaction
+    signed_tx = w3.eth.account.sign_transaction(tx, private_key='your-private-key-here')
+    tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+
+    # Wait for the transaction to be mined
+    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+
+    return receipt
+
 
 class EmailCredentials:
     def __init__(self, email_address: str, password: str):
@@ -191,8 +212,8 @@ async def analyze_emails(q: Q):
 
                 sender_email = email_message['From']
 
-                """tx_hash = store_email_hash_on_chain(conversation_history, sender_email)
-                print(f"Stored email hash in transaction: {tx_hash.hex()}")"""
+                tx_hash = store_email_hash_on_chain(conversation_history, sender_email)
+                print(f"Stored email hash in transaction: {tx_hash.hex()}")
 
 
                 prompt = (f"Based on the following conversation history, provide a JSON response with a 'score' field from 0 to 100 "
