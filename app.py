@@ -48,7 +48,7 @@ class EmailCredentials:
 
 
 
-openai.api_key = ''
+openai.api_key = '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'
 
 # Use for page cards that should be removed when navigating away.
 # For pages that should be always present on screen use q.page[key] = ...
@@ -73,8 +73,8 @@ async def page1(q: Q):
     q.page['sidebar'].value = '#page1'
     clear_cards(q)  # When routing, drop all the cards except of the main ones (header, sidebar, meta).
     add_card(q, 'article', ui.tall_article_preview_card(
-        box=ui.box('vertical', height='1200px'), title='How does magic work',
-        image='',
+        box=ui.box('vertical', height='1800px'), title='Project Description',
+        image='https://images.unsplash.com/photo-1485230405346-71acb9518d9c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c2VjdXJpdHl8ZW58MHx8MHx8fDA%3D',
         content='''
 
 #### **Overview of the Phishing Email Detection Application**
@@ -377,7 +377,7 @@ async def init(q: Q) -> None:
             ui.zone('sidebar', size='250px'),
             ui.zone('body', zones=[
                 ui.zone('header'),
-                ui.zone('content', size = '1500px',zones=[
+                ui.zone('content', size = '1800px',zones=[
                     # Specify various zones and use the one that is currently needed. Empty zones are ignored.
                     ui.zone('horizontal', direction=ui.ZoneDirection.ROW),
                     ui.zone('vertical'),
