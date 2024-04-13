@@ -10,43 +10,58 @@ from hashlib import sha256
 import requests
 from web3.middleware import geth_poa_middleware
 
-w3 = Web3(Web3.HTTPProvider('https://erpc.xinfin.network'))
+w3 = Web3(Web3.HTTPProvider('https://rpc.apothem.network'))
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
 abi_file = 'abi.json'
 with open('abi.json', 'r') as abi_file:
     contract_abi = json.load(abi_file)
-
-contract_address = '0x06cAd455E39dE197C93a725b9057bB49f37F3941'
+contract_address = '0x453bBff29600058F414524e7B47E1Be67f313914'
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
-# Verify connection
-if w3.is_connected():
-    print("Successfully connected to XinFin Mainnet.")
-else:
-    print("Failed to connect.")
-
-
 
 def store_email_hash_on_chain(uid, email_body):
-    sender_address = w3.eth.accounts[0]  # Ensure this account is unlocked and has gas
+    try:
+        uid = str(uid)  # Ensure UID is a string as expected by the ABI
+        private_key = '1913b305c73fdd97e6565d6a2c8a0baf51030d52c29a4f847b94b79a1eca32dc'
+        account = w3.eth.account.from_key(private_key)
+        email_hash = w3.keccak(text=email_body)
+        sender_address = account.address
+        print(sender_address)
 
-    # Create hash, needs to be bytes32
-    email_hash = w3.keccak(text=email_body)  # This directly uses Web3 to create a bytes32 hash
-    tx = contract.functions.storeHash(uid, email_hash).buildTransaction({
-        'from': sender_address,
-        'nonce': w3.eth.getTransactionCount(sender_address),
-        'gas': 2000000,
-        'gasPrice': w3.toWei('10', 'gwei')
-    })
+        # Retrieve account balance
+        balance = w3.eth.get_balance(sender_address)
+        print(f"Account balance: {w3.from_wei(balance, 'ether')} XDC")
 
-    # Sign the transaction
-    signed_tx = w3.eth.account.sign_transaction(tx, private_key='your-private-key-here')
-    tx_hash = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+        # Gas estimation
+        gas_price = w3.eth.gas_price
+        gas_limit = 300000  # You can adjust this value based on the complexity of the contract function
+        total_cost = gas_price * gas_limit
 
-    # Wait for the transaction to be mined
-    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        print(f"Estimated gas cost (in wei): {total_cost} (Gas price: {gas_price}, Gas limit: {gas_limit})")
 
-    return receipt
+        if balance < total_cost:
+            return f"Error: Insufficient funds for the transaction. Required: {w3.from_wei(total_cost, 'ether')} XDC, Available: {w3.from_wei(balance, 'ether')} XDC"
+
+        # Transaction count (nonce) for the sender's address
+        nonce = w3.eth.get_transaction_count(sender_address)
+
+        # Build the transaction
+        tx = contract.functions.storeHash(uid, email_hash).build_transaction({
+            'chainId': 51,  # Chain ID for XinFin MainNet, use 51 for Apothem Testnet if necessary
+            'gas': gas_limit,
+            'gasPrice': gas_price,
+            'nonce': nonce,
+        })
+
+        # Sign the transaction with the sender's private key
+        signed_tx = account.sign_transaction(tx)
+
+        # Send the transaction
+        tx_receipt = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        return tx_receipt.hex()
+    except Exception as e:
+        return f"Error: {str(e)}"
+
 
 
 class EmailCredentials:
@@ -213,7 +228,7 @@ async def analyze_emails(q: Q):
                 sender_email = email_message['From']
 
                 tx_hash = store_email_hash_on_chain(conversation_history, sender_email)
-                print(f"Stored email hash in transaction: {tx_hash.hex()}")
+                print(f"Stored email hash in transaction: {tx_hash}")
 
 
                 prompt = (f"Based on the following conversation history, provide a JSON response with a 'score' field from 0 to 100 "

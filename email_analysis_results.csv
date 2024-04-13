@@ -73,7 +73,7 @@ https://myaccount.google.com/notifications
 You received this email to let you know about important changes to your
 Google Account and services.
 © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
-",0.99,"This email is most likely phishing as it claims that the recipient's password was changed for their Google account. However, the sender's email address, although appearing to be from Google, is actually from a different domain. This is a common tactic used by phishing scams to trick users into disclosing sensitive information. The email also includes a link to recover the account, which could potentially lead to a fake website used to steal login information. Additionally, the email creates a sense of urgency and prompts the recipient to take immediate action, a common strategy used by phishing scams. The only reason this email does not receive a score of 100 is due to the inclusion of a legitimate Google security link, which could potentially confuse recipients and make them believe the email is genuine. However, based on the other indicators, this email is highly likely to be phishing."
+",0.9,"The email is likely phishing with a high score of 90. The sender's email is spoofed to appear as Google, but the actual sender is a different address (no-reply@accounts.google.com). This is a red flag for phishing attempts. Additionally, the email prompts the recipient to click on a link to recover their account, which could potentially lead to phishing or malware attacks. A legitimate email from Google would not include a link for account recovery. Furthermore, the email contains a sense of urgency by stating that the password was changed and the recipient needs to take action. This is a common tactic used in phishing emails to pressure recipients into providing personal information. Finally, the email lacks personalization and uses generic language (Your password was changed) instead of addressing the recipient by name. This is another red flag for phishing attempts."
 3,Google <no-reply@accounts.google.com>,"[image: Google]
 Phone number added for 2-Step Verification
 
@@ -89,7 +89,7 @@ https://myaccount.google.com/notifications
 You received this email to let you know about important changes to your
 Google Account and services.
 © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
-",0.95,"This email contains suspicious language urging you to 'secure your account now' and warning that your account may have been compromised. It also asks you to check activity and visit a suspicious link to confirm your account changes. These are common tactics used by phishing emails to trick users into giving away their personal information. The sender's email appears to be from 'Google' but further investigation shows it is from a no-reply email address. This is a strong indication that this email is a phishing attempt, and we highly recommend not clicking on any links or providing any personal information in response to this email."
+",0.9,"The email appears to be from a legitimate source, Google, but the sender's email address does not match their official email domains. The email also uses urgent language and includes a link that may lead to a phishing website. Additionally, the email requests for the recipient to check their account activity and secure their account, which is a common tactic used by phishing attackers to steal login credentials. The email also includes a phone number, which can be used for social engineering attacks. Therefore, there is a high likelihood that this email is phishing and the user should not click on any links or provide any personal information."
 4,Google <no-reply@accounts.google.com>,"[image: Google]
 2-Step Verification turned on
 
@@ -111,7 +111,7 @@ https://myaccount.google.com/notifications
 You received this email to let you know about important changes to your
 Google Account and services.
 © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
-",0.05,"This email is likely not phishing for several reasons. First, the sender's email address is a legitimate Google address (no-reply@accounts.google.com). Second, the email addresses the recipient by name and provides useful information about 2-Step Verification, a known security feature offered by Google. Third, the email includes a link to the official Google website for managing 2-Step Verification settings. However, as with all emails, it is important to be cautious and verify the legitimacy of the email by checking the URL of any links before clicking. Based on these factors, the likelihood of this email being phishing is low with a score of 5."
+",0.1,"This email is likely not a phishing attempt. The sender's email is from a trusted source, Google, and the content of the email is consistent with Google's 2-Step Verification process. However, a low score of 10 is given due to the generic sender email address used and the mention of a backup phone or codes which could potentially be a phishing tactic."
 5,Google <no-reply@accounts.google.com>,"[image: Google]
 App password created to sign in to your account
 
@@ -126,6 +126,160 @@ https://myaccount.google.com/notifications
 You received this email to let you know about important changes to your
 Google Account and services.
 © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
-",1.0,"The message is using scare tactics and a sense of urgency to prompt the recipient to click on a link that may lead to a phishing website. The use of a generic sender address (no-reply@accounts.google.com) is also suspicious. In addition, the message does not refer to the recipient by name or include any specific details about the account or changes made to it. These are all common indicators of a phishing attempt, raising the likelihood of the email being a phishing scam to 100 out of 100."
+",0.95,"Based on the email sender and content, there is a high likelihood that this email is phishing. The sender's email address is not a known official Google email and the language used in the email is meant to elicit a sense of urgency and urge the recipient to take immediate action. Furthermore, the email asks for personal information and includes suspicious links. These are all common tactics used in phishing attempts to gain access to personal information and potentially compromise the recipient's account."
 8,sai garikapati <saigarikapati1@gmail.com>,"Hi I would Iike to book a appointment for saloon
-",0.8,"The email is marked as phishing with a score of 80 because it contains a request to book a salon appointment, which is a common tactic used by phishing emails to lure users into clicking on malicious links or providing personal information. In addition, the sender's email address does not match the name given in the email, which is another indicator of a possible phishing attempt. However, the email does not contain any suspicious links or attachments, which is why the score is not higher."
+",0.85,"The email is likely phishing because the sender's email address (saigarikapati1@gmail.com) does not seem to be a legitimate business email for a salon booking. Additionally, the request for a salon booking is out of context with the previous conversation history, suggesting that it could be a phishing attempt to gather personal information."
+15,j <j@jekk.com>,"Sup?
+",1.0,"The email is phishing because the sender's email is not a full email address and the message only contains a generic greeting with no context or purpose, which is common in phishing attempts."
+16,James <oic@me.com>,"I cam for my appointment last week and since then all my hair has fallen out, ive kept in a small green plastic bag submerged in peroxide, can you glue it back in strand by strand please? Also how much for the trim and how much weight will I loose?",0.9,"The email is likely phishing. The sender's email address, 'oic@me.com', is not associated with a legitimate salon or hairdresser, suggesting that the sender is not a reputable source. Additionally, the sender's request for glueing hair and questions about weight loss seem strange and unrelated to a typical hair appointment. These factors suggest that the email may be attempting to scam or deceive the recipient."
+17,James <oic@me.com>,"Yes what is the average price of apples. Also can I get some more of that stuff? And please make my appointment for 13am on the 31 of February 
+
+> On Mar 22, 2024, at 8:36 PM, emailautomation13@gmail.com wrote:
+> 
+> Hi James,
+> I'm sorry to hear about your recent salon experience. As an AI assistant, I am not able to physically assist with your hair restoration request. I recommend reaching out to the salon directly to address your concerns and to discuss any potential reimbursement for your appointment. Also, the cost and amount of weight lost during a trim varies depending on the length and thickness of your hair. It would be best to discuss this with your stylist during your appointment. Is there anything else I can assist you with?
+
+",0.8,"This email has a high likelihood of being phishing as it contains multiple requests for personal information and payment. Additionally, the sender's email address does not match their name, indicating potential impersonation or spoofing. Exercise caution when responding to this email."
+18,Jekk Grace <jekkleegrace@gmail.com>,"when do you have time for the scalping special ?
+",0.95,The use of urgency and pressure tactics ('special' and '?' repetition) coupled with a vague and impersonal greeting ('when do you have time') and a suspicious sender name and email address ('Jekk Grace' and 'jekkleegrace@gmail.com') indicates a high likelihood of this being a phishing email. Proceed with caution.
+19,Jekk Grace <jekkleegrace@gmail.com>,"how long does it take and can i get the labia fibroblast at the same time?
+
+On Sun, Mar 24, 2024 at 11:10 PM <emailautomation13@gmail.com> wrote:
+
+> Hello Jekk Grace, thank you for your message regarding the salon
+> appointment.
+>
+> I am happy to assist you with booking the scalp treatment special. Our
+> salon has availability for the scalp treatment tomorrow at 2pm and also
+> next week on Wednesday at 10am. Which date and time would you prefer?
+>
+> Please let me know and I will confirm the appointment for you. Looking
+> forward to hearing back from you. Have a great day!
+>
+> Best regards,
+>
+> [Your Name]
+> AI Salon Assistant
+",0.8,"Based on the context of the conversation, it appears that the sender is trying to book a salon appointment. However, the email does not mention the name of the salon or the sender's name, and the email address appears to be a generic email (emailautomation13@gmail.com). This lack of personalization and specific information raises suspicion and increases the likelihood of this email being phishing. Additionally, the request to book a 'scalp treatment special' and the mention of the sender being an AI Salon Assistant also adds to the suspicion of this email being phishing. A score of 80 is given, indicating a high likelihood of phishing."
+20,Jekk Grace <jekkleegrace@gmail.com>,"great and as discussed last time I will bring my puppy fluffy for
+the vivisection we discussed so we can harvest the stem cells for my dermal
+rolling, do you need me to have fluffy sedated or will you do that?
+
+On Sun, Mar 24, 2024 at 11:14 PM <emailautomation13@gmail.com> wrote:
+
+> Hello Jekk Grace,
+> According to our records, the labia fibroblast treatment takes about 1
+> hour and the scalp treatment takes approximately 45 minutes. If you would
+> like to book both treatments at the same time, we recommend scheduling for
+> 2 hours. Would you like to confirm the appointment for tomorrow at 2pm or
+> next week on Wednesday at 10am?
+",0.95,"Based on the conversation history, there are several red flags that indicate this email is likely phishing. The mention of 'vivisection' and 'harvesting stem cells' for 'dermal rolling' is highly suspicious and not a typical treatment offered by a legitimate clinic. Additionally, the sender's email address is not professional and does not match their name, which further raises suspicion. The suggested appointment times are also suspiciously accommodating, indicating a sense of urgency and pressure to respond quickly. Overall, this email is highly likely to be phishing and we recommend caution before responding or providing any personal information."
+21,Jekk Grace <jekkleegrace@gmail.com>,"hi
+
+On Sun, Mar 24, 2024 at 11:18 PM <emailautomation13@gmail.com> wrote:
+
+> Hello Jekk,
+>
+> Thank you for reaching out to us. I apologize for any confusion, but our
+> salon does not offer vivisection services. We specialize in hair, facial,
+> and body treatments. If you are still interested in booking an appointment
+> for your desired treatments, please let me know and I will be happy to
+> assist you. However, we do not provide any services involving animals.
+> Thank you for understanding.
+",0.1,"Based on the email conversation history, the score is relatively low at 10 as there are no indications or red flags that suggest phishing. The emails are legitimate and appear to be from a real sender and a real business. Additionally, the email explains that the salon does not offer vivisection services, which shows that the email is relevant to the conversation and not trying to solicit personal information. However, it is always important to remain cautious and verify the legitimacy of any email asking for personal information or offering unusual services."
+22,Jekk Grace <jekkleegrace@gmail.com>,"what was the first thing i said in my first message to you?
+
+On Sun, Mar 24, 2024 at 11:20 PM <emailautomation13@gmail.com> wrote:
+
+> Hello Jekk,
+>
+> Thank you for your previous message. As mentioned before, our salon does
+> not provide vivisection services. However, we offer a variety of hair,
+> facial, and body treatments to choose from. If you would like to book an
+> appointment for any of these services, please let me know the date and time
+> that works best for you, and I will check our availability and schedule it
+> for you. Alternatively, you can also browse our website to see our full
+> list of services and their pricing. Thank you for considering our salon. We
+> look forward to pampering you soon.
+",0.0,"This email appears to be a legitimate response from a salon, as the sender is responding to a previous message from the receiver and providing information about the salon's services. There is no apparent attempt to deceive or obtain personal information from the receiver. Therefore, the likelihood of this email being phishing is very low."
+23,Jekk Grace <jekkleegrace@gmail.com>,"what was the first thing i messaged you about?
+
+On Sun, Mar 24, 2024 at 11:20 PM <emailautomation13@gmail.com> wrote:
+
+> Hello Jekk,
+>
+> Thank you for your previous message. As mentioned before, our salon does
+> not provide vivisection services. However, we offer a variety of hair,
+> facial, and body treatments to choose from. If you would like to book an
+> appointment for any of these services, please let me know the date and time
+> that works best for you, and I will check our availability and schedule it
+> for you. Alternatively, you can also browse our website to see our full
+> list of services and their pricing. Thank you for considering our salon. We
+> look forward to pampering you soon.
+",0.1,"There is a low likelihood of this email being phishing. The email was sent in response to a previous message from Jekk Grace, and discusses the services offered by a salon. The email is personalized and does not contain any suspicious or urgent requests for personal information or payment. However, a small score of 10 is given due to the fact that the sender's email address is different from the salon's email address."
+52,chanakya vasantha <chanakyavasantha@gmail.com>,"Yes, I am still interested.
+
+On Wed, 27 Mar 2024 at 4:00 PM, <emailautomation13@gmail.com> wrote:
+
+> 1. Hi! Welcome back to HairStylz. I'm your AI Assistant, ready to help you
+> book your perfect salon appointment. What's your name?
+> 2. Hi, it's me again - your trusted HairStylz AI Assistant. When do you
+> want to come in for your hair styling session?
+> 3. Hello there! I'm still here to assist with your salon appointment.
+> Shall we schedule it now or take a closer look at your desired hairstyle
+> first?
+> 4. Hi again! As your AI Assistant at HairStylz, I'm happy to arrange a
+> time and date for your salon visit. How does that sound to you?
+> 5. Hi there! Let's get you a salon appointment at HairStylz
+",0.95,"The email appears to be a phishing attempt due to multiple factors. Firstly, the email address <emailautomation13@gmail.com> is not a legitimate email address associated with HairStylz, which is suspicious. Additionally, the AI Assistant's greeting is generic and lacks any personalization, which is another red flag. Furthermore, the AI Assistant did not respond to the sender's response indicating their name and continued with generic prompts, which is a common tactic used in phishing emails. Lastly, the sender's email domain <gmail.com> is not a business email domain associated with HairStylz, further increasing the likelihood of this being a phishing attempt."
+53,chanakya vasantha <chanakyavasantha2@gmail.com>,"From: support@yourbank.com Dear Valued Customer,  We have detected unusual
+activity on your account and suspect it may have been compromised. To
+ensure the security of your funds and personal information, we kindly
+request that you verify your account details immediately by clicking on the
+following link: [malicious link]  Failure to verify your account within the
+next 24 hours may result in temporary suspension or closure of your
+account. We appreciate your prompt attention to this matter.
+Sincerely,
+Your Bank Support Team
+",0.95,"The email is likely phishing for the following reasons: 1) The email claims to be from a reputable source, but the sender's email address does not match the expected domain. 2) The email uses urgency and fear tactics to prompt immediate action. 3) The email contains a suspicious link which could lead to a malicious website. 4) The email requests for sensitive information, which is not a typical practice for a legitimate communication from a bank. The combination of these factors raises the likelihood of the email being phishing, with a score of 95 out of 100."
+54,swaroop kuchi <hakkercodes@gmail.com>,"Subject: Urgent: Action Required on Your Account
+
+Dear Valued Customer,
+
+We have detected unusual activity on your bank account. To ensure the
+security of your funds, please click on the link below to verify your
+account details.
+
+Verify Your Account Now <http://fakebankingwebsite.com/>
+
+Thank you for your cooperation.
+
+Security Team
+HDBC Bank
+",0.0,Failed to parse response.
+55,swaroop kuchi <hakkercodes@gmail.com>,"Dear Valued Customer,
+
+We have detected unusual activity on your bank account. To ensure the
+security of your funds, please click on the link below to verify your
+account details.
+
+Verify Your Account Now <http://fakebankingwebsite.com/>
+
+Thank you for your cooperation.
+
+Security Team
+KKNN Bank
+",0.95,"The usage of 'Dear Valued Customer' instead of the recipient's name and the mention of 'unusual activity' on the bank account are common phishing tactics used to trick people into clicking on malicious links. The sender's email address is also suspicious and does not match the bank's official domain. Furthermore, the urgency to click on the link and the request for personal account details are signs of a phishing attempt. These factors contribute to a high likelihood of this email being phishing."
+56,Sudheer Jaldu <sudheerjaldu123@gmail.com>,"Dear User,
+
+We regret to inform you that your account has been temporarily suspended
+due to suspicious login attempts. To regain access, please click the link
+below and verify your account information.
+
+Regain Access Now
+
+Regards,
+
+Security Team
+ckkk bank
+",0.95,"The email appears to be from a trusted source (a bank security team), however the use of urgency and suspicious login attempts is a common tactic used in phishing scams. Also, the sender's email address does not match the sender name, further raising suspicion. The link provided in the email is also not a legitimate bank website, indicating a possible phishing attempt. Overall, the email shows several red flags commonly associated with phishing scams, making it highly likely to be a phishing attack."

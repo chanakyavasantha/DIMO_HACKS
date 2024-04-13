@@ -1,18 +1,5 @@
 [
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "changeOwner",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
@@ -58,17 +45,12 @@
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "uid",
-				"type": "string"
-			},
-			{
-				"internalType": "bytes32",
-				"name": "hash",
-				"type": "bytes32"
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
 			}
 		],
-		"name": "storeHash",
+		"name": "changeOwner",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -103,6 +85,24 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "uid",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "hash",
+				"type": "bytes32"
+			}
+		],
+		"name": "storeHash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
