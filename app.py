@@ -48,7 +48,7 @@ class EmailCredentials:
 
 
 
-openai.api_key = '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'
+openai.api_key = ''
 
 # Use for page cards that should be removed when navigating away.
 # For pages that should be always present on screen use q.page[key] = ...
