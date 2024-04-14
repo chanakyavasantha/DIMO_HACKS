@@ -19,7 +19,7 @@ with open('abi.json', 'r') as abi_file:
 contract_address = '0x453bBff29600058F414524e7B47E1Be67f313914'
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
 
-def store_email_hash_on_chain(uid, email_body):
+"""def store_email_hash_on_chain(uid, email_body):
     try:
         uid = str(uid)  # Ensure UID is a string as expected by the ABI
         private_key = '1913b305c73fdd97e6565d6a2c8a0baf51030d52c29a4f847b94b79a1eca32dc'
@@ -47,6 +47,48 @@ def store_email_hash_on_chain(uid, email_body):
 
         # Build the transaction
         tx = contract.functions.storeHash(uid, email_hash).build_transaction({
+            'chainId': 51,  # Chain ID for XinFin MainNet, use 51 for Apothem Testnet if necessary
+            'gas': gas_limit,
+            'gasPrice': gas_price,
+            'nonce': nonce,
+        })
+
+        # Sign the transaction with the sender's private key
+        signed_tx = account.sign_transaction(tx)
+
+        # Send the transaction
+        tx_receipt = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        return tx_receipt.hex()
+    except Exception as e:
+        return f"Error: {str(e)}" """ 
+    
+def store_email_data_on_chain(uid, email_body, sender, conversation_history, phishing_score, explanation):
+    try:
+        uid = str(uid)  # Ensure UID is a string as expected by the ABI
+        private_key = '1913b305c73fdd97e6565d6a2c8a0baf51030d52c29a4f847b94b79a1eca32dc'
+        account = w3.eth.account.from_key(private_key)
+        email_hash = w3.keccak(text=email_body)
+        sender_address = account.address
+        print(f"Sender Address: {sender_address}")
+
+        # Retrieve account balance
+        balance = w3.eth.get_balance(sender_address)
+        print(f"Account balance: {w3.from_wei(balance, 'ether')} XDC")
+
+        # Gas estimation
+        gas_price = w3.eth.gas_price
+        gas_limit = 400000  # Adjusted for possibly greater transaction complexity
+        total_cost = gas_price * gas_limit
+        print(f"Estimated gas cost (in wei): {total_cost} (Gas price: {gas_price}, Gas limit: {gas_limit})")
+
+        if balance < total_cost:
+            return f"Error: Insufficient funds for the transaction. Required: {w3.from_wei(total_cost, 'ether')} XDC, Available: {w3.from_wei(balance, 'ether')} XDC"
+
+        # Transaction count (nonce) for the sender's address
+        nonce = w3.eth.get_transaction_count(sender_address)
+
+        # Build the transaction
+        tx = contract.functions.storeEmailData(uid, email_hash, sender, conversation_history, phishing_score, explanation).build_transaction({
             'chainId': 51,  # Chain ID for XinFin MainNet, use 51 for Apothem Testnet if necessary
             'gas': gas_limit,
             'gasPrice': gas_price,
@@ -226,9 +268,7 @@ async def analyze_emails(q: Q):
                         conversation_history = f"{part.get_payload(decode=True).decode()}"
 
                 sender_email = email_message['From']
-
-                tx_hash = store_email_hash_on_chain(conversation_history, sender_email)
-                print(f"Stored email hash in transaction: {tx_hash}")
+                
 
 
                 prompt = (f"Based on the following conversation history, provide a JSON response with a 'score' field from 0 to 100 "
@@ -251,10 +291,17 @@ async def analyze_emails(q: Q):
                 except json.JSONDecodeError:
                     phishing_score = 0  # Default or error value
                     explanation = "Failed to parse response."
+                
+                #uid, email_body, sender, conversation_history, phishing_score, explanation
+                tx_hash = store_email_data_on_chain(uid,conversation_history, sender_email, conversation_history, phishing_score, explanation)
+                print(f"Stored email hash in transaction: {tx_hash}")
 
                 # Display generated reply
-                
-                credentials.add_analysis_result(uid.decode("utf-8"), sender_email, conversation_history, phishing_score/100, explanation)
+                    
+                try:
+                    credentials.add_analysis_result(uid.decode("utf-8"), sender_email, conversation_history, phishing_score/100, explanation)
+                except Exception as e:
+                    print(f"Error adding analysis result: {str(e)}")
                 """add_card(q,f'conversation_history{uid}', ui.form_card( title = 'conversation',box = 'vertical',items = [ui.text(conversation_history)]))
                 add_card(q, f'reply_card{uid}', ui.form_card( title = 'reply' , box = 'vertical',items = [ui.text(explanation)]))
                 add_card(q,f'PhishingScore{uid}',ui.wide_gauge_stat_card(
@@ -278,6 +325,10 @@ async def analyze_emails(q: Q):
         # Handle errors gracefully, such as displaying an error message to the user
 
     await q.page.save()
+
+
+def retrieve_email_hash(uid):
+    return contract.functions.retrieveHash(uid).call()
 
 csv_file_path = 'email_analysis_results.csv'
 df = pd.read_csv(csv_file_path)

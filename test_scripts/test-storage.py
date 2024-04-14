@@ -9,7 +9,7 @@ w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 # Load the contract's ABI
 with open('abi.json', 'r') as abi_file:
     contract_abi = json.load(abi_file)
-contract_address = '0x453bBff29600058F414524e7B47E1Be67f313914'
+contract_address = '0xF3642CaBb1cbf5fb88af1762c93351d8cb6C5E5E'
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
 
 def store_email_hash_on_chain(uid, email_body):
