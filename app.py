@@ -439,9 +439,9 @@ async def run_script(q: Q):
     conversation_history = row['ConversationHistory'].iloc[0]
     explanation = row['Explanation'].iloc[0]
     #print(conversation_history, phishing_score, explanation)
-    auth_token = '1a9a3b2f-af0e-4160-8fb8-5e92275275a8'
-    phone_number_id = '17914db4-b20c-4911-b9d4-9918aa581b30'
-    customer_number = "+917893960528"
+    auth_token = ''
+    phone_number_id = ''
+    customer_number = ""
     headers = {
         'Authorization': f'Bearer {auth_token}',
         'Content-Type': 'application/json',
