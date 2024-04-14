@@ -10,11 +10,10 @@ from hashlib import sha256
 import requests
 from web3.middleware import geth_poa_middleware
 
-w3 = Web3(Web3.HTTPProvider('https://rpc.apothem.network'))
+w3 = Web3(Web3.HTTPProvider('https://rpc.apothem.network')) 
 w3.middleware_onion.inject(geth_poa_middleware, layer=0)
 
-abi_file = 'abi.json'
-with open('abi.json', 'r') as abi_file:
+with open('ABI/abi_updated.json', 'r') as abi_file:
     contract_abi = json.load(abi_file)
 contract_address = '0x453bBff29600058F414524e7B47E1Be67f313914'
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
@@ -69,8 +68,9 @@ def store_email_data_on_chain(uid, email_body, sender, conversation_history, phi
         account = w3.eth.account.from_key(private_key)
         email_hash = w3.keccak(text=email_body)
         sender_address = account.address
-        print(f"Sender Address: {sender_address}")
+        #print(f"Sender Address: {sender_address}")
 
+        #print(uid, email_hash, sender, conversation_history, phishing_score, explanation)
         # Retrieve account balance
         balance = w3.eth.get_balance(sender_address)
         print(f"Account balance: {w3.from_wei(balance, 'ether')} XDC")
@@ -294,7 +294,7 @@ async def analyze_emails(q: Q):
                 
                 #uid, email_body, sender, conversation_history, phishing_score, explanation
                 tx_hash = store_email_data_on_chain(uid,conversation_history, sender_email, conversation_history, phishing_score, explanation)
-                print(f"Stored email hash in transaction: {tx_hash}")
+                #print(f"Stored email hash in transaction: {tx_hash}")
 
                 # Display generated reply
                     
@@ -317,13 +317,14 @@ async def analyze_emails(q: Q):
                 # At the end of analyze_emails function
                 csv_file_path = 'email_analysis_results.csv'  # Specify a path in the writable directory
                 credentials.analysis_results.to_csv(csv_file_path, index=False)
+                
         mail.close()
         mail.logout()
 
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         # Handle errors gracefully, such as displaying an error message to the user
-
+    await page3(q)
     await q.page.save()
 
 
@@ -332,6 +333,11 @@ def retrieve_email_hash(uid):
 
 csv_file_path = 'email_analysis_results.csv'
 df = pd.read_csv(csv_file_path)
+def get_all_uids():
+    return contract.functions.getAllUIDs().call()
+
+def get_email_details(uid):
+    return contract.functions.getEmailDetails(uid).call()
 @on('#page3')
 async def page3(q: Q):
     q.page['sidebar'].value = '#page3'
@@ -357,6 +363,22 @@ async def page3(q: Q):
             ))
             if index == 10000:  # Limit rows for performance reasons
                 break
+        """uids = ["b'52"]
+        table_rows = []
+        for uid in uids:
+            try:
+                data = contract.functions.retrieveEmailData(uid).call()
+                table_rows.append({
+                    'uid': uid,
+                    'hash': data[0].hex(),
+                    'sender': data[1],
+                    'conversationHistory': data[2],
+                    'phishingScore': data[3],
+                    'explanation': data[4]
+                })
+            except Exception as e:
+                print(f"Failed to retrieve data for {uid}: {str(e)}")"""
+            
         add_card(q, 'table', ui.form_card(box='vertical', items=[
             ui.table(
                 name='table',
@@ -378,16 +400,16 @@ async def page3(q: Q):
 selected = 1
 @on()
 async def show_inputs(q: Q):
-    print('HI')
+    #print('HI')
     selected_row = int(q.args.table[0])
     selected = selected_row
     row = df.loc[df['UID'] == selected_row]  # Assuming 'UID' is the unique identifier in your DataFrame
-    print(row)
+    #print(row)
     uid = selected_row
     phishing_score = row['PhishingScore'].iloc[0]
     conversation_history = row['ConversationHistory'].iloc[0]
     explanation = row['Explanation'].iloc[0]
-    print(phishing_score, conversation_history, explanation)
+    #print(phishing_score, conversation_history, explanation)
     add_card(q,f'conversation_history{uid}', ui.form_card( title = 'conversation',box = 'vertical',items = [ui.text(conversation_history)]))
     add_card(q, f'reply_card{uid}', ui.form_card( title = 'reply' , box = 'vertical',items = [ui.text(explanation)]))
     add_card(q,f'PhishingScore{uid}',ui.wide_bar_stat_card(
@@ -411,12 +433,12 @@ async def run_script(q: Q):
     clear_cards(q)
     selected_row = selected
     row = df.loc[df['UID'] == selected_row]  # Assuming 'UID' is the unique identifier in your DataFrame
-    print(row)
+    #print(row)
     uid = selected_row
     phishing_score = row['PhishingScore'].iloc[0]
     conversation_history = row['ConversationHistory'].iloc[0]
     explanation = row['Explanation'].iloc[0]
-    print(conversation_history, phishing_score, explanation)
+    #print(conversation_history, phishing_score, explanation)
     auth_token = '1a9a3b2f-af0e-4160-8fb8-5e92275275a8'
     phone_number_id = '17914db4-b20c-4911-b9d4-9918aa581b30'
     customer_number = "+919515472473"
