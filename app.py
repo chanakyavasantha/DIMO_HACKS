@@ -126,7 +126,7 @@ class EmailCredentials:
 
 
 
-openai.api_key = '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'
+openai.api_key = 'API KEY HERE'
 
 # Use for page cards that should be removed when navigating away.
 # For pages that should be always present on screen use q.page[key] = ...
@@ -294,7 +294,7 @@ async def analyze_emails(q: Q):
                 
                 #uid, email_body, sender, conversation_history, phishing_score, explanation
                 tx_hash = store_email_data_on_chain(uid,conversation_history, sender_email, conversation_history, phishing_score, explanation)
-                #print(f"Stored email hash in transaction: {tx_hash}")
+                print(f"Stored email hash in transaction: {tx_hash}")
 
                 # Display generated reply
                     
@@ -441,7 +441,7 @@ async def run_script(q: Q):
     #print(conversation_history, phishing_score, explanation)
     auth_token = '1a9a3b2f-af0e-4160-8fb8-5e92275275a8'
     phone_number_id = '17914db4-b20c-4911-b9d4-9918aa581b30'
-    customer_number = "+919515472473"
+    customer_number = "+917893960528"
     headers = {
         'Authorization': f'Bearer {auth_token}',
         'Content-Type': 'application/json',
